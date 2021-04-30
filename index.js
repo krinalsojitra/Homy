@@ -41,6 +41,10 @@ app.use("/variant", VariantRoute);
 const AddressRoute = require("./address/address.route");
 app.use("/address", AddressRoute);
 
+//paymet summery
+const paymetSummeryRoute = require("./paymet_summery/paymet_summery.route");
+app.use("/paymetSummery", paymetSummeryRoute);
+
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");

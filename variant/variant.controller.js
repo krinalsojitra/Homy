@@ -22,23 +22,20 @@ exports.productvariant = async (req, res, next) => {
       if (!isExist)
         return res.status(422).json({
           status: false,
-          message: "Oops ! Advertisement does not Exist",
+          message: "Oops ! variant does not Exist",
         })
-        else
-        {
-          const user = await Variant.find({  product : req.params.variant_id}).sort({ createdAt: -1 });
-    if (!user)
-      return res
-        .status(200)
-        .send({ status: false, error: "oops ! Something went wrong" });
+      else {
+        const user = await Variant.find({ product: req.params.variant_id }).sort({ createdAt: -1 });
+        if (!user)
+          return res
+            .status(200)
+            .send({ status: false, error: "oops ! Something went wrong" });
 
-    return res.status(200).json({ status: true, message: "success", user });
- 
-        }
-
+        return res.status(200).json({ status: true, message: "success", user });
+      }
     }
 
-     } catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, error });
   }
@@ -63,7 +60,7 @@ exports.store = async (req, res, next) => {
     const variant = new Variant();
     variant.price = req.body.price;
     variant.type = req.body.type;
-    variant.product =req.body.product;
+    variant.product = req.body.product;
 
     await variant.save((error, variant) => {
       if (error) return res.status(200).json({ status: false, error });
@@ -96,7 +93,7 @@ exports.update = async (req, res, next) => {
     const own = {
       type: req.body.type,
       price: req.body.price,
-      product:req.body.product,
+      product: req.body.product,
     };
 
     await Variant.updateOne(
@@ -141,7 +138,7 @@ exports.destroy = async (req, res, next) => {
           message: "Variant Deleted Successfully",
         });
     });
-  }catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, error });
   }

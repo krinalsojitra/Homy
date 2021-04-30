@@ -22,23 +22,22 @@ exports.useraddress = async (req, res, next) => {
       if (!isExist)
         return res.status(422).json({
           status: false,
-          message: "Oops ! Advertisement does not Exist",
+          message: "Oops ! user does not Exist",
         })
-        else
-        {
-          const user = await Address.find({  user : req.params.address_id}).sort({ createdAt: -1 });
-    if (!user)
-      return res
-        .status(200)
-        .send({ status: false, error: "oops ! Something went wrong" });
+      else {
+        const user = await Address.find({ user: req.params.address_id }).sort({ createdAt: -1 });
+        if (!user)
+          return res
+            .status(200)
+            .send({ status: false, error: "oops ! Something went wrong" });
 
-    return res.status(200).json({ status: true, message: "success", user });
- 
-        }
+        return res.status(200).json({ status: true, message: "success", user });
+
+      }
 
     }
 
-     } catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, error });
   }
@@ -61,12 +60,12 @@ exports.store = async (req, res, next) => {
         .status(200)
         .json({ status: false, message: "Oops ! user is required !" });
     const address = new Address();
-    address.user          = req.body.user;
-    address.pincode       = req.body.pincode;
-    address.street_add_1  = req.body.street_add_1;
-    address.street_add_2  = req.body.street_add_2;
-    address.city          = req.body.city;
-    address.country       = req.body.country;
+    address.user = req.body.user;
+    address.pincode = req.body.pincode;
+    address.street_add_1 = req.body.street_add_1;
+    address.street_add_2 = req.body.street_add_2;
+    address.city = req.body.city;
+    address.country = req.body.country;
 
     await address.save((error, address) => {
       if (error) return res.status(200).json({ status: false, error });
@@ -97,12 +96,12 @@ exports.update = async (req, res, next) => {
     }
 
     const own = {
-      user             :req.body.user,
-      pincode          :req.body.pincode,
-      street_add_1     :req.body.street_add_1,
-      street_add_2     :req.body.street_add_2,
-      city             :req.body.city,
-      country          :req.body.country
+      user: req.body.user,
+      pincode: req.body.pincode,
+      street_add_1: req.body.street_add_1,
+      street_add_2: req.body.street_add_2,
+      city: req.body.city,
+      country: req.body.country
     };
 
     await Address.updateOne(
@@ -147,7 +146,7 @@ exports.destroy = async (req, res, next) => {
           message: "address Deleted Successfully",
         });
     });
-  }catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, error });
   }

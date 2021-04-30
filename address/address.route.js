@@ -7,6 +7,6 @@ router.get("/", AddressController.index);
 router.get("/:address_id", AddressController.useraddress);
 router.post("/", AddressController.store);
 router.patch("/:address_id", AddressController.update);
-router.delete("/:address_id",AddressController.destroy);
+router.delete("/:address_id", AddressController.destroy);
 
 module.exports = router;

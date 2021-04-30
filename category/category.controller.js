@@ -28,8 +28,8 @@ exports.store = async (req, res, next) => {
         .json({ status: false, message: "Oops ! street_add_1 is required !" });
 
     const category = new Category();
-    category.name  = req.body.name;
-    
+    category.name = req.body.name;
+
     await category.save((error, category) => {
       if (error) return res.status(200).json({ status: false, error });
       else
@@ -59,8 +59,8 @@ exports.update = async (req, res, next) => {
     }
 
     const own = {
-        name:req.body.name
-     };
+      name: req.body.name
+    };
 
     await Category.updateOne(
       { _id: req.params.category_id },
@@ -104,7 +104,7 @@ exports.destroy = async (req, res, next) => {
           message: "category Deleted Successfully",
         });
     });
-  }catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, error });
   }

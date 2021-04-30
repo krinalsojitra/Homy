@@ -41,9 +41,9 @@ exports.store = async (req, res, next) => {
     user.name = req.body.name;
     user.email = req.body.email;
     user.phone_number = req.body.phone_number;
-    user.fcm_token =req.body.fcm_token;
-    user.islogout =req.body.islogout;
-    user.isnew =req.body.isnew;
+    user.fcm_token = req.body.fcm_token;
+    user.islogout = req.body.islogout;
+    user.isnew = req.body.isnew;
     user.Image = req.file.path;
 
     await user.save((error, user) => {
@@ -60,8 +60,6 @@ exports.store = async (req, res, next) => {
     return res.status(500).json({ status: false, error });
   }
 };
-
-
 exports.update = async (req, res, next) => {
 
   try {
@@ -70,7 +68,7 @@ exports.update = async (req, res, next) => {
       if (!isExist)
         return res.status(422).json({
           status: false,
-          message: "Oops ! Advertisement does not Exist",
+          message: "Oops ! user does not Exist",
         });
     }
 
@@ -81,7 +79,7 @@ exports.update = async (req, res, next) => {
       isnew: req.body.isnew,
       phone_number: req.body.phone_number,
       fcm_token: req.body.fcm_token,
-      Image :req.file.path
+      Image: req.file.path
     };
 
     await User.updateOne(
@@ -93,7 +91,7 @@ exports.update = async (req, res, next) => {
         const own = await User.findOne({ _id: req.params.user_id });
         return res.status(200).json({
           status: true,
-          message: "Advertisement Updated Successfully",
+          message: "user Updated Successfully",
           own,
         });
       }
@@ -103,8 +101,6 @@ exports.update = async (req, res, next) => {
     return res.status(500).json({ status: false, error });
   }
 };
-
-
 exports.destroy = async (req, res, next) => {
 
   try {
@@ -114,7 +110,7 @@ exports.destroy = async (req, res, next) => {
       if (!own)
         return res.status(422).json({
           status: false,
-          message: "Oops ! Advertisement does not Exist",
+          message: "Oops ! user does not Exist",
         });
     }
 
@@ -123,10 +119,10 @@ exports.destroy = async (req, res, next) => {
       else
         return res.status(200).json({
           status: true,
-          message: "Advertisement Deleted Successfully",
+          message: "user Deleted Successfully",
         });
     });
-  }catch (error) {
+  } catch (error) {
     console.log(error);
     return res.status(500).json({ status: false, error });
   }

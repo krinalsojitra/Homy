@@ -6,6 +6,6 @@ const categoryController = require("./category.controller");
 router.get("/", categoryController.index);
 router.post("/", categoryController.store);
 router.patch("/:category_id", categoryController.update);
-router.delete("/:category_id",categoryController.destroy);
+router.delete("/:category_id", categoryController.destroy);
 
 module.exports = router;
